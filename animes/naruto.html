@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Наруто — AniVolume</title>
+    <link rel="stylesheet" href="../style.css" />
+</head>
+<body class="anime-page">
+
+    <header class="header">
+        <div class="logo">⚡ AniVolume</div>
+        <nav>
+            <a href="../index.html">Главная</a>
+            <a href="#">Избранное</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <a href="../index.html" class="back-link">← Назад к каталогу</a>
+
+        <div class="anime-detail">
+            <!-- Постер -->
+            <div class="anime-poster">
+                <img src="../posters/naruto.jpg" alt="Наруто" 
+                     onerror="this.src='https://placehold.co/400x600/1a1a3a/7c4dff?text=Naruto'">
+            </div>
+
+            <!-- Информация -->
+            <div class="anime-info">
+                <h1 class="anime-title">Наруто</h1>
+                <div class="anime-meta">2002 • 220 эпизодов • Шонен</div>
+                <p class="anime-desc">
+                    История о юном ниндзя Наруто Узумаки, который мечтает стать Хокаге — 
+                    главой своей деревни. Внутри него запечатан Девятихвостый демон-лис, 
+                    из-за чего он изгой в своей же деревне. Но упорство и вера в себя 
+                    помогают ему идти к цели.
+                </p>
+
+                <!-- Плееры -->
+                <div class="player-section">
+                    <h3>▶ Смотреть онлайн</h3>
+
+                    <div class="player-box">
+                        <iframe src="https://vk.com/video_ext.php?oid=-123456789&id=456239018&hash=abc123" 
+                                allowfullscreen></iframe>
+                    </div>
+
+                    <div class="player-box">
+                        <iframe src="https://kodik.cc/seria/123456/abc-def-ghi" 
+                                allowfullscreen></iframe>
+                    </div>
+
+                    <!-- Кнопка копирования -->
+                    <button class="copy-btn" onclick="copyPageUrl()">
+                        📋 Скопировать ссылку на страницу
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 AniVolume — твой гид в мире аниме</p>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        function copyPageUrl() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = '✅ Скопировано!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = '📋 Скопировать ссылку на страницу';
+                    btn.classList.remove('copied');
+                }, 2500);
+            }).catch(() => {
+                alert('Скопируй ссылку вручную: ' + url);
+            });
+        }
+    </script>
+</body>
+  </html>
