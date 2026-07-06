@@ -1,3 +1,4 @@
+/* ===== ОСНОВНЫЕ СТИЛИ ===== */
 * {
     margin: 0;
     padding: 0;
@@ -74,14 +75,103 @@ nav a.active {
     display: inline-block;
 }
 
-/* ===== CATALOG ===== */
+/* ===== ПОИСК ===== */
+.search-container {
+    margin-bottom: 30px;
+}
+
+.search-box {
+    display: flex;
+    gap: 12px;
+    max-width: 500px;
+    position: relative;
+}
+
+.search-box input {
+    flex: 1;
+    background: rgba(18, 18, 42, 0.8);
+    border: 2px solid rgba(124, 77, 255, 0.2);
+    border-radius: 30px;
+    padding: 14px 20px;
+    color: #f0eef8;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+    font-family: inherit;
+}
+
+.search-box input:focus {
+    border-color: #6a3de8;
+    box-shadow: 0 0 30px rgba(106, 61, 232, 0.15);
+}
+
+.search-box input::placeholder {
+    color: #55557a;
+}
+
+.search-box button {
+    background: linear-gradient(135deg, #6a3de8, #4a1db8);
+    border: none;
+    color: #fff;
+    padding: 14px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.3s;
+    font-size: 16px;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.search-box button:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 30px rgba(106, 61, 232, 0.4);
+}
+
+.search-box .clear-btn {
+    position: absolute;
+    right: 140px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #8888bb;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-box .clear-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.search-info {
+    color: #8888bb;
+    font-size: 14px;
+    margin-top: 10px;
+    min-height: 20px;
+}
+
+.search-info .highlight {
+    color: #b388ff;
+    font-weight: 600;
+}
+
+/* ===== КАТАЛОГ ===== */
 .catalog {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 28px;
 }
 
-/* ===== CARD ===== */
+/* ===== КАРТОЧКА ===== */
 .card {
     background: #14142e;
     border-radius: 24px;
@@ -125,7 +215,32 @@ nav a.active {
     color: #8888bb;
 }
 
-/* ===== FOOTER ===== */
+/* ===== НЕТ РЕЗУЛЬТАТОВ ===== */
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: #55557a;
+}
+
+.no-results .icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.no-results .title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #8888bb;
+    margin-bottom: 8px;
+}
+
+.no-results .subtitle {
+    font-size: 16px;
+}
+
+/* ===== ФУТЕР ===== */
 .footer {
     text-align: center;
     padding: 28px 20px;
@@ -135,7 +250,10 @@ nav a.active {
     margin-top: 30px;
 }
 
-/* ===== СТРАНИЦА АНИМЕ (доп. стили) ===== */
+/* ====================================================
+   СТРАНИЦА АНИМЕ
+   ==================================================== */
+
 .anime-page .back-link {
     display: inline-block;
     margin-bottom: 24px;
@@ -196,6 +314,172 @@ nav a.active {
     line-height: 1.7;
     margin-bottom: 24px;
     color: #d0cef0;
+    font-size: 15px;
+}
+
+.anime-page .anime-genre {
+    display: inline-block;
+    background: rgba(124, 77, 255, 0.15);
+    border: 1px solid rgba(124, 77, 255, 0.2);
+    padding: 4px 16px;
+    border-radius: 20px;
+    color: #b388ff;
+    font-size: 13px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+/* ===== ВЫБОР СЕРИЙ ===== */
+.episodes-section {
+    margin-top: 28px;
+    background: rgba(18, 18, 42, 0.6);
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid rgba(124, 77, 255, 0.15);
+}
+
+.episodes-section h3 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: #b388ff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.episodes-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    max-height: 220px;
+    overflow-y: auto;
+    padding: 4px;
+}
+
+.episodes-grid::-webkit-scrollbar {
+    width: 6px;
+}
+
+.episodes-grid::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.episodes-grid::-webkit-scrollbar-thumb {
+    background: rgba(124, 77, 255, 0.3);
+    border-radius: 10px;
+}
+
+.episodes-grid::-webkit-scrollbar-thumb:hover {
+    background: rgba(124, 77, 255, 0.5);
+}
+
+/* ===== УВЕЛИЧЕННЫЕ КНОПКИ СЕРИЙ ===== */
+.episode-btn {
+    background: rgba(124, 77, 255, 0.1);
+    border: 1px solid rgba(124, 77, 255, 0.2);
+    color: #b0b0d0;
+    padding: 10px 22px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    font-family: inherit;
+    min-width: 52px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.episode-btn:hover {
+    background: rgba(124, 77, 255, 0.25);
+    border-color: rgba(124, 77, 255, 0.5);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(124, 77, 255, 0.15);
+}
+
+.episode-btn.active {
+    background: linear-gradient(135deg, #6a3de8, #4a1db8);
+    border-color: #6a3de8;
+    color: #fff;
+    box-shadow: 0 0 30px rgba(106, 61, 232, 0.3);
+}
+
+.episode-btn.active:hover {
+    box-shadow: 0 0 50px rgba(106, 61, 232, 0.5);
+}
+
+.episode-input-group {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.episode-input-group label {
+    color: #8888bb;
+    font-size: 14px;
+}
+
+.episode-input-group input {
+    background: rgba(10, 10, 30, 0.8);
+    border: 1px solid rgba(124, 77, 255, 0.2);
+    border-radius: 30px;
+    padding: 10px 18px;
+    color: #fff;
+    font-size: 15px;
+    width: 90px;
+    outline: none;
+    transition: 0.3s;
+    font-family: inherit;
+}
+
+.episode-input-group input:focus {
+    border-color: #6a3de8;
+    box-shadow: 0 0 20px rgba(106, 61, 232, 0.15);
+}
+
+.episode-input-group input::-webkit-inner-spin-button {
+    opacity: 1;
+}
+
+.episode-go-btn {
+    background: linear-gradient(135deg, #6a3de8, #4a1db8);
+    border: none;
+    color: #fff;
+    padding: 10px 28px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.3s;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+.episode-go-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(106, 61, 232, 0.4);
+}
+
+.episode-go-btn:active {
+    transform: scale(0.95);
+}
+
+.current-episode {
+    color: #b388ff;
+    font-size: 14px;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.current-episode span {
+    color: #fff;
+    font-weight: 700;
 }
 
 /* ===== ПЛЕЕРЫ ===== */
@@ -223,12 +507,23 @@ nav a.active {
     box-shadow: 0 0 30px rgba(124, 77, 255, 0.1);
 }
 
-.player-box iframe {
+.player-wrapper {
+    position: relative;
     width: 100%;
-    height: 360px;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
     border-radius: 12px;
-    border: none;
     background: #000;
+}
+
+.player-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 /* ===== КНОПКА КОПИРОВАНИЯ ===== */
@@ -259,7 +554,9 @@ nav a.active {
     box-shadow: 0 0 40px rgba(46, 125, 50, 0.4);
 }
 
-/* ===== АДАПТИВ ===== */
+/* ====================================================
+   АДАПТИВ
+   ==================================================== */
 @media (max-width: 700px) {
     .header {
         padding: 14px 20px;
@@ -282,7 +579,41 @@ nav a.active {
         max-width: 260px;
         margin: 0 auto;
     }
-    .player-box iframe {
+    .player-wrapper iframe {
         height: 200px;
     }
-                     }
+    .episodes-grid {
+        gap: 8px;
+        max-height: 160px;
+    }
+    .episode-btn {
+        padding: 8px 16px;
+        font-size: 14px;
+        min-width: 42px;
+    }
+    .episode-input-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .episode-input-group input {
+        width: 100%;
+    }
+    .anime-page .anime-title {
+        font-size: 26px;
+    }
+    .page-title {
+        font-size: 28px;
+    }
+    
+    /* Адаптив поиска */
+    .search-box {
+        flex-direction: column;
+    }
+    .search-box button {
+        width: 100%;
+    }
+    .search-box .clear-btn {
+        right: 12px;
+        top: 46px;
+    }
+    }
