@@ -1,11 +1,11 @@
 // ===== ДАННЫЕ АНИМЕ =====
 const animeList = [
     {
-        id: 'naruto',
-        title: 'Наруто',
-        year: 2002,
-        poster: 'posters/IMG_20260707_003347_040.jpg',
-        link: 'animes/naruto.html'
+        id: 'Koori-no-Jouheki',
+        title: 'Ледяная стена',
+        year: 2026,
+        poster: 'posters/V5x5K4dAaiE.jpg',
+        link: 'animes/Koori-no-Jouheki.html'
     },
     {
         id: 'bleach',
