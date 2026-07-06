@@ -1,26 +1,7 @@
 // ===== ДАННЫЕ АНИМЕ =====
 const animeList = [
     {
-        id: 'naruto',
-        title: 'тест',
-        year: 2002,
-        poster: 'posters/naruto.jpg',
-        link: 'animes/naruto.html'
-    },
-    {
-        id: 'bleach',
-        title: 'тест',
-        year: 2004,
-        poster: 'posters/bleach.jpg',
-        link: 'animes/bleach.html'
-    },
-    {
-        id: 'jujutsu-kaisen',
-        title: 'тест',
-        year: 2020,
-        poster: 'posters/jujutsu-kaisen.jpg',
-        link: 'animes/jujutsu-kaisen.html'
-    },
+        
     {
         id: 'Koori-no-Jouheki',
         title: 'Ледяная стена',
@@ -28,13 +9,7 @@ const animeList = [
         poster: 'posters/V5x5K4dAaiE.jpg',
         link: 'animes/Koori-no-Jouheki.html'
     },
-    {
-    id: 'Koori-no-Jouheki',
-        title: 'тест',
-        year: 2026,
-        poster: 'posters/V5x5K4dAaiE.jpg',
-        link: 'animes/Koori-no-Jouheki.html'
-    }
+    
 ];
 
 // ===== ОТРИСОВКА КАТАЛОГА =====
