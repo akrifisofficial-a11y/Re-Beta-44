@@ -1,0 +1,288 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+    background: #0b0b1a;
+    color: #f0eef8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== HEADER ===== */
+.header {
+    background: rgba(18, 18, 40, 0.85);
+    backdrop-filter: blur(12px);
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #6a3de8;
+    box-shadow: 0 0 30px rgba(106, 61, 232, 0.25);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #b388ff, #7c4dff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+    text-shadow: 0 0 30px rgba(124, 77, 255, 0.4);
+}
+
+nav a {
+    color: #b0b0d0;
+    text-decoration: none;
+    margin-left: 30px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: 0.3s;
+    padding: 6px 14px;
+    border-radius: 30px;
+}
+
+nav a:hover,
+nav a.active {
+    color: #fff;
+    background: rgba(124, 77, 255, 0.2);
+    box-shadow: 0 0 20px rgba(124, 77, 255, 0.15);
+}
+
+/* ===== MAIN ===== */
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    flex: 1;
+}
+
+.page-title {
+    font-size: 36px;
+    margin-bottom: 30px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #c084fc, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+/* ===== CATALOG ===== */
+.catalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 28px;
+}
+
+/* ===== CARD ===== */
+.card {
+    background: #14142e;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+    transition: 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+    border: 1px solid rgba(124, 77, 255, 0.15);
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.card:hover {
+    transform: translateY(-12px) scale(1.02);
+    border-color: #7c4dff;
+    box-shadow: 0 0 50px rgba(124, 77, 255, 0.35);
+}
+
+.card-poster {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    background: #1a1a3a;
+    display: block;
+}
+
+.card-info {
+    padding: 16px 16px 20px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #f0eef8;
+}
+
+.card-year {
+    font-size: 14px;
+    color: #8888bb;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    text-align: center;
+    padding: 28px 20px;
+    border-top: 1px solid #28284a;
+    color: #55557a;
+    font-size: 14px;
+    margin-top: 30px;
+}
+
+/* ===== СТРАНИЦА АНИМЕ (доп. стили) ===== */
+.anime-page .back-link {
+    display: inline-block;
+    margin-bottom: 24px;
+    color: #b388ff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.anime-page .back-link:hover {
+    color: #fff;
+    text-shadow: 0 0 20px #7c4dff;
+}
+
+.anime-page .anime-detail {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    background: #12122a;
+    border-radius: 32px;
+    padding: 30px;
+    border: 1px solid #2a2a5a;
+}
+
+.anime-page .anime-poster {
+    flex: 0 0 260px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(124, 77, 255, 0.2);
+}
+
+.anime-page .anime-poster img {
+    width: 100%;
+    display: block;
+}
+
+.anime-page .anime-info {
+    flex: 1;
+    min-width: 280px;
+}
+
+.anime-page .anime-title {
+    font-size: 34px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #c084fc, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+}
+
+.anime-page .anime-meta {
+    color: #8888bb;
+    margin-bottom: 18px;
+    font-size: 15px;
+}
+
+.anime-page .anime-desc {
+    line-height: 1.7;
+    margin-bottom: 24px;
+    color: #d0cef0;
+}
+
+/* ===== ПЛЕЕРЫ ===== */
+.player-section {
+    margin-top: 28px;
+}
+
+.player-section h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #b388ff;
+}
+
+.player-box {
+    background: #0a0a1e;
+    border-radius: 16px;
+    padding: 8px;
+    border: 1px solid #2a2a5a;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.player-box:hover {
+    border-color: #7c4dff;
+    box-shadow: 0 0 30px rgba(124, 77, 255, 0.1);
+}
+
+.player-box iframe {
+    width: 100%;
+    height: 360px;
+    border-radius: 12px;
+    border: none;
+    background: #000;
+}
+
+/* ===== КНОПКА КОПИРОВАНИЯ ===== */
+.copy-btn {
+    background: linear-gradient(135deg, #6a3de8, #4a1db8);
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 30px rgba(106, 61, 232, 0.25);
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.copy-btn:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 50px rgba(106, 61, 232, 0.5);
+}
+
+.copy-btn.copied {
+    background: #2e7d32;
+    box-shadow: 0 0 40px rgba(46, 125, 50, 0.4);
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 700px) {
+    .header {
+        padding: 14px 20px;
+        flex-wrap: wrap;
+    }
+    nav a {
+        margin-left: 12px;
+        font-size: 14px;
+        padding: 4px 10px;
+    }
+    .catalog {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 16px;
+    }
+    .anime-page .anime-detail {
+        padding: 16px;
+    }
+    .anime-page .anime-poster {
+        flex: 0 0 100%;
+        max-width: 260px;
+        margin: 0 auto;
+    }
+    .player-box iframe {
+        height: 200px;
+    }
+                     }
