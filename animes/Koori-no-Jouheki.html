@@ -29,23 +29,7 @@
             <!-- Информация -->
             <div class="anime-info">
                 <h1 class="anime-title">Ледяная стена</h1>
-                
-                <!-- Жанры -->
-                <div style="margin-bottom: 12px;">
-                    <span class="anime-genre">🎭 Фэнтези</span>
-                    <span class="anime-genre">🎭 Драма</span>
-                    <span class="anime-genre">🎭 Приключения</span>
-                </div>
-                
                 <div class="anime-meta">2026 • 12 эпизодов</div>
-                
-                <!-- Описание -->
-                <p class="anime-desc">
-                    В мире, где вечная мерзлота поглотила земли, юный воин отправляется в опасное путешествие к Ледяной стене — загадочному барьеру, отделяющему живых от мёртвых. Ему предстоит раскрыть тайну своего прошлого и спасти свой народ от неминуемой гибели. 
-                </p>
-                <p class="anime-desc" style="margin-top: 10px;">
-                    Аниме исследует темы жертвенности, дружбы и борьбы с неизбежным, погружая зрителя в атмосферу сурового и прекрасного мира, где каждый шаг может стать последним.
-                </p>
 
                 <!-- Выбор серий -->
                 <div class="episodes-section">
@@ -100,14 +84,15 @@
 
     <script src="../script.js"></script>
     <script>
-        // ===== КОНФИГУРАЦИЯ СЕРИЙ =====
+        // ===== КОНФИГУРАЦИЯ СЕРИЙ (ВСЁ ЗДЕСЬ) =====
         const CONFIG = {
             animeName: 'Ледяная стена',
-            totalEpisodes: 14,
+            totalEpisodes: 12,
             defaultEpisode: 1,
+            // Ссылки на плееры для каждой серии
             episodes: {
                 1: {
-                    vk: 'https://vkvideo.ru/video_ext.php?oid=-231762008&id=456239155&hash=46724f9906e74637',
+                    vk: 'https://vk.com/video_ext.php?oid=-123456789&id=456239301&hash=abc123',
                     kodik: 'https://kodik.cc/seria/123456/abc-def-ghi?episode=1'
                 },
                 2: {
@@ -232,6 +217,7 @@
             const vkPlayer = document.getElementById('playerVK');
             const kodikPlayer = document.getElementById('playerKodik');
 
+            // Получаем данные серии из CONFIG
             const episodeData = CONFIG.episodes[episode];
 
             if (vkPlayer && episodeData) {
@@ -285,6 +271,7 @@
                 });
             }
 
+            // Загружаем текущую серию
             updatePlayers(currentEpisode);
         });
 
@@ -323,4 +310,4 @@
         console.log(`🎬 Текущая серия: ${currentEpisode}`);
     </script>
 </body>
-                                </html>
+</html>
