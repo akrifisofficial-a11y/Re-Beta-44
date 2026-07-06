@@ -23,45 +23,53 @@
             <!-- Постер -->
             <div class="anime-poster">
                 <img src="../posters/V5x5K4dAaiE.jpg" alt="Ледяная стена" 
-                     onerror="this.src='https://placehold.co/400x600/1a1a3a/7c4dff?text=Naruto'">
+                     onerror="this.src='https://placehold.co/400x600/1a1a3a/7c4dff?text=Ледяная+стена'">
             </div>
 
             <!-- Информация -->
             <div class="anime-info">
                 <h1 class="anime-title">Ледяная стена</h1>
-                <div class="anime-meta">2026 • 14 эпизодов</div>
-                <p class="anime-desc">
-                    🔊 Роли озвучивали:
-🔹 ritatuychik
-🔹 Kotgeimer
-🔹 Eve
-🔹 CTAPOCTA
-🔹 Aneurin
-🔹 Запятой
-🔹 Alt
-🔹 gunGbank
-🔹 Mirasha
+                <div class="anime-meta">2026 • 12 эпизодов</div>
 
-🎬 Режиссер: Vyse/Eve/Kotgeimer
-🎧 Работа со звуком: Kotgeimer
-🎨 Локализация: pdnapper
-                </p>
+                <!-- Выбор серий -->
+                <div class="episodes-section">
+                    <h3>📺 Выбор серии</h3>
+                    
+                    <div class="episodes-grid" id="episodesGrid">
+                        <!-- Серии будут сгенерированы через JS -->
+                    </div>
+
+                    <div class="episode-input-group">
+                        <label for="episodeInput">Ввести номер:</label>
+                        <input type="number" id="episodeInput" min="1" value="1" placeholder="№">
+                        <button class="episode-go-btn" id="goToEpisode">Перейти</button>
+                    </div>
+
+                    <div class="current-episode">
+                        🎬 Текущая серия: <span id="currentEpisodeDisplay">1</span>
+                    </div>
+                </div>
 
                 <!-- Плееры -->
                 <div class="player-section">
                     <h3>▶ Смотреть онлайн</h3>
 
                     <div class="player-box">
-                        <iframe src="https://vkvideo.ru/video/playlist/-231762008_13" 
-                                allowfullscreen></iframe>
+                        <div class="player-wrapper">
+                            <iframe id="playerVK" 
+                                    src="https://vk.com/video_ext.php?oid=-123456789&id=456239301&hash=abc123" 
+                                    allowfullscreen></iframe>
+                        </div>
                     </div>
 
                     <div class="player-box">
-                        <iframe src="https://kodik.cc/seria/123456/abc-def-ghi" 
-                                allowfullscreen></iframe>
+                        <div class="player-wrapper">
+                            <iframe id="playerKodik" 
+                                    src="https://kodik.cc/seria/123456/abc-def-ghi?episode=1" 
+                                    allowfullscreen></iframe>
+                        </div>
                     </div>
 
-                    <!-- Кнопка копирования -->
                     <button class="copy-btn" onclick="copyPageUrl()">
                         📋 Скопировать ссылку на страницу
                     </button>
@@ -76,20 +84,230 @@
 
     <script src="../script.js"></script>
     <script>
+        // ===== КОНФИГУРАЦИЯ СЕРИЙ (ВСЁ ЗДЕСЬ) =====
+        const CONFIG = {
+            animeName: 'Ледяная стена',
+            totalEpisodes: 12,
+            defaultEpisode: 1,
+            // Ссылки на плееры для каждой серии
+            episodes: {
+                1: {
+                    vk: 'https://vkvideo.ru/video_ext.php?oid=-231762008&id=456239155&hash=46724f9906e74637',
+                    kodik: 'https://kodik.cc/seria/123456/abc-def-ghi?episode=1'
+                },
+                2: {
+                    vk: 'https://vk.com/video_ext.php?oid=-123456789&id=456239302&hash=abc123',
+                    kodik: 'https://kodik.cc/seria/123456/abc-def-ghi?episode=2'
+                },
+                3: {
+                    vk: 'https://vk.com/video_ext.php?oid=-123456789&id=456239303&hash=abc123',
+                    kodik: 'https://kodik.cc/seria/123456/abc-def-ghi?episode=3'
+                },
+                4: {
+                    vk: 'https://vk.com/video_ext.php?oid=-123456789&id=456239304&hash=abc123',
+                    kodik: 'https://kodik.cc/seria/123456/abc-def-ghi?episode=4'
+                },
+                5: {
+                    vk: 'https://vk.com/video_ext.php?oid=-123456789&id=456239305&hash=abc123',
+                    kodik: 'https://kodik.cc/seria/123456/abc-def-ghi?episode=5'
+                },
+                6: {
+                    vk: 'https://vk.com/video_ext.php?oid=-123456789&id=456239306&hash=abc123',
+                    kodik: 'https://kodik.cc/seria/123456/abc-def-ghi?episode=6'
+                },
+                7: {
+                    vk: 'https://vk.com/video_ext.php?oid=-123456789&id=456239307&hash=abc123',
+                    kodik: 'https://kodik.cc/seria/123456/abc-def-ghi?episode=7'
+                },
+                8: {
+                    vk: 'https://vk.com/video_ext.php?oid=-123456789&id=456239308&hash=abc123',
+                    kodik: 'https://kodik.cc/seria/123456/abc-def-ghi?episode=8'
+                },
+                9: {
+                    vk: 'https://vk.com/video_ext.php?oid=-123456789&id=456239309&hash=abc123',
+                    kodik: 'https://kodik.cc/seria/123456/abc-def-ghi?episode=9'
+                },
+                10: {
+                    vk: 'https://vk.com/video_ext.php?oid=-123456789&id=456239310&hash=abc123',
+                    kodik: 'https://kodik.cc/seria/123456/abc-def-ghi?episode=10'
+                },
+                11: {
+                    vk: 'https://vk.com/video_ext.php?oid=-123456789&id=456239311&hash=abc123',
+                    kodik: 'https://kodik.cc/seria/123456/abc-def-ghi?episode=11'
+                },
+                12: {
+                    vk: 'https://vk.com/video_ext.php?oid=-123456789&id=456239312&hash=abc123',
+                    kodik: 'https://kodik.cc/seria/123456/abc-def-ghi?episode=12'
+                }
+            }
+        };
+
+        // ===== СКРИПТ ВЫБОРА СЕРИЙ =====
+        let currentEpisode = parseInt(localStorage.getItem('anime_episode_' + CONFIG.animeName)) || CONFIG.defaultEpisode;
+
+        function renderEpisodeButtons() {
+            const grid = document.getElementById('episodesGrid');
+            if (!grid) return;
+
+            const total = CONFIG.totalEpisodes;
+            let html = '';
+            const displayCount = Math.min(20, total);
+
+            for (let i = 1; i <= displayCount; i++) {
+                html += `<button class="episode-btn ${i === currentEpisode ? 'active' : ''}" 
+                                data-episode="${i}" 
+                                onclick="goToEpisode(${i})">
+                            ${i}
+                        </button>`;
+            }
+
+            if (total > 20) {
+                html += `<button class="episode-btn" onclick="showAllEpisodes()" style="background: rgba(124,77,255,0.2);">
+                            ... (${total})
+                        </button>`;
+            }
+
+            grid.innerHTML = html;
+            updateCurrentEpisodeDisplay();
+        }
+
+        function showAllEpisodes() {
+            const grid = document.getElementById('episodesGrid');
+            if (!grid) return;
+
+            let html = '';
+            for (let i = 1; i <= CONFIG.totalEpisodes; i++) {
+                html += `<button class="episode-btn ${i === currentEpisode ? 'active' : ''}" 
+                                data-episode="${i}" 
+                                onclick="goToEpisode(${i})">
+                            ${i}
+                        </button>`;
+            }
+
+            grid.innerHTML = html;
+            updateCurrentEpisodeDisplay();
+        }
+
+        function goToEpisode(episode) {
+            if (episode < 1 || episode > CONFIG.totalEpisodes) {
+                alert(`❌ Серия должна быть от 1 до ${CONFIG.totalEpisodes}`);
+                return;
+            }
+
+            currentEpisode = episode;
+            localStorage.setItem('anime_episode_' + CONFIG.animeName, episode);
+
+            document.querySelectorAll('.episode-btn').forEach(btn => {
+                btn.classList.toggle('active', parseInt(btn.dataset.episode) === episode);
+            });
+
+            const input = document.getElementById('episodeInput');
+            if (input) input.value = episode;
+
+            updatePlayers(episode);
+            updateCurrentEpisodeDisplay();
+
+            document.querySelector('.player-section').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
+
+        function updatePlayers(episode) {
+            const vkPlayer = document.getElementById('playerVK');
+            const kodikPlayer = document.getElementById('playerKodik');
+
+            // Получаем данные серии из CONFIG
+            const episodeData = CONFIG.episodes[episode];
+
+            if (vkPlayer && episodeData) {
+                vkPlayer.src = episodeData.vk + '&_=' + Date.now();
+            }
+
+            if (kodikPlayer && episodeData) {
+                kodikPlayer.src = episodeData.kodik + '&_=' + Date.now();
+            }
+
+            console.log(`🎬 ${CONFIG.animeName} — Серия ${episode}`);
+        }
+
+        function updateCurrentEpisodeDisplay() {
+            const display = document.getElementById('currentEpisodeDisplay');
+            if (display) {
+                display.textContent = currentEpisode;
+            }
+        }
+
+        // ===== ОБРАБОТЧИКИ =====
+        document.addEventListener('DOMContentLoaded', () => {
+            renderEpisodeButtons();
+
+            const input = document.getElementById('episodeInput');
+            if (input) {
+                input.value = currentEpisode;
+                input.max = CONFIG.totalEpisodes;
+            }
+
+            const goBtn = document.getElementById('goToEpisode');
+            if (goBtn) {
+                goBtn.addEventListener('click', () => {
+                    const val = parseInt(input.value);
+                    if (!isNaN(val) && val >= 1 && val <= CONFIG.totalEpisodes) {
+                        goToEpisode(val);
+                    } else {
+                        alert(`❌ Введите номер от 1 до ${CONFIG.totalEpisodes}`);
+                    }
+                });
+            }
+
+            if (input) {
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        const val = parseInt(input.value);
+                        if (!isNaN(val) && val >= 1 && val <= CONFIG.totalEpisodes) {
+                            goToEpisode(val);
+                        }
+                    }
+                });
+            }
+
+            // Загружаем текущую серию
+            updatePlayers(currentEpisode);
+        });
+
+        // ===== КОПИРОВАНИЕ =====
         function copyPageUrl() {
-            const url = window.location.href;
-            navigator.clipboard.writeText(url).then(() => {
+            const url = window.location.href.split('?')[0];
+            const fullUrl = url + '?episode=' + currentEpisode;
+            
+            navigator.clipboard.writeText(fullUrl).then(() => {
                 const btn = document.querySelector('.copy-btn');
-                btn.textContent = '✅ Скопировано!';
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '✅ Скопировано!';
                 btn.classList.add('copied');
                 setTimeout(() => {
-                    btn.textContent = '📋 Скопировать ссылку на страницу';
+                    btn.innerHTML = originalText;
                     btn.classList.remove('copied');
                 }, 2500);
             }).catch(() => {
-                alert('Скопируй ссылку вручную: ' + url);
+                alert('Скопируй ссылку вручную: ' + fullUrl);
             });
         }
+
+        // ===== ЗАГРУЗКА СЕРИИ ИЗ URL =====
+        (function loadEpisodeFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            const episodeParam = params.get('episode');
+            if (episodeParam) {
+                const ep = parseInt(episodeParam);
+                if (!isNaN(ep) && ep >= 1 && ep <= CONFIG.totalEpisodes) {
+                    setTimeout(() => goToEpisode(ep), 500);
+                }
+            }
+        })();
+
+        console.log(`📺 ${CONFIG.animeName} — ${CONFIG.totalEpisodes} серий`);
+        console.log(`🎬 Текущая серия: ${currentEpisode}`);
     </script>
 </body>
-  </html>
+                    </html>
