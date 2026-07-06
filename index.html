@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AniVolume — каталог аниме</title>
+    <title>AniVolume — каталог озвучки</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -18,6 +18,17 @@
 
     <main class="container">
         <h1 class="page-title">🔥 Список аниме</h1>
+        
+        <!-- Поисковик -->
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 Поиск аниме..." />
+                <button id="searchBtn">Найти</button>
+                <button id="clearSearchBtn" class="clear-btn" style="display: none;">✕</button>
+            </div>
+            <div class="search-info" id="searchInfo"></div>
+        </div>
+
         <div class="catalog" id="catalog">
             <!-- Карточки будут вставлены через JS -->
             <div style="text-align: center; padding: 50px; color: #55557a;">
@@ -32,4 +43,4 @@
 
     <script src="script.js"></script>
 </body>
-</html>
+                    </html>
