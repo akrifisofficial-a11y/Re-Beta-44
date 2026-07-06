@@ -4,7 +4,7 @@ const animeList = [
         id: 'naruto',
         title: 'Наруто',
         year: 2002,
-        poster: 'posters/naruto.jpg',
+        poster: 'posters/IMG_20260707_003347_040.jpg',
         link: 'animes/naruto.html'
     },
     {
