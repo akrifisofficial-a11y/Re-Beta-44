@@ -5,6 +5,186 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AniVolume — каталог аниме</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Дополнительные стили для кнопки обновления */
+        .update-btn {
+            background: rgba(124, 77, 255, 0.15);
+            border: 1px solid rgba(124, 77, 255, 0.3);
+            color: #b388ff;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            backdrop-filter: blur(5px);
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .update-btn:hover {
+            background: rgba(124, 77, 255, 0.25);
+            box-shadow: 0 0 30px rgba(124, 77, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .update-btn:active {
+            transform: scale(0.95);
+        }
+
+        .update-btn.updating {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        /* Стили для уведомления об обновлении */
+        .update-notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #6a3de8, #4a1db8);
+            color: white;
+            padding: 18px 28px;
+            border-radius: 16px;
+            font-weight: 700;
+            box-shadow: 0 0 60px rgba(106, 61, 232, 0.6);
+            z-index: 9999;
+            animation: slideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+
+        .update-notification:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 80px rgba(106, 61, 232, 0.8);
+        }
+
+        .update-notification .icon {
+            font-size: 28px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .update-notification .spinner {
+            font-size: 20px;
+            animation: spin 1s linear infinite;
+            margin-left: 5px;
+        }
+
+        .update-notification .text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .update-notification .title {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .update-notification .subtitle {
+            font-size: 12px;
+            opacity: 0.7;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100px) scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Статус-бар обновления */
+        .update-status {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: rgba(18, 18, 40, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(124, 77, 255, 0.2);
+            border-radius: 12px;
+            padding: 12px 18px;
+            color: #b0b0d0;
+            font-size: 13px;
+            z-index: 100;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .update-status.visible {
+            display: flex;
+        }
+
+        .update-status .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4caf50;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .update-status .dot.checking {
+            background: #ff9800;
+        }
+
+        .update-status .dot.error {
+            background: #f44336;
+        }
+
+        /* Адаптив для мобильных */
+        @media (max-width: 700px) {
+            .update-btn {
+                padding: 6px 14px;
+                font-size: 12px;
+            }
+            .update-notification {
+                bottom: 20px;
+                right: 20px;
+                left: 20px;
+                padding: 14px 20px;
+                font-size: 14px;
+            }
+            .update-status {
+                top: 70px;
+                right: 10px;
+                left: 10px;
+                font-size: 12px;
+                padding: 10px 14px;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -13,13 +193,25 @@
         <nav>
             <a href="index.html" class="active">Главная</a>
             <a href="#">Избранное</a>
+            <button class="update-btn" id="updateBtn" title="Проверить обновления">
+                <span>🔄</span> Обновить
+            </button>
         </nav>
     </header>
 
+    <!-- Статус обновлений -->
+    <div class="update-status" id="updateStatus">
+        <span class="dot" id="statusDot"></span>
+        <span id="statusText">Проверка обновлений...</span>
+    </div>
+
     <main class="container">
-        <h1 class="page-title">🔥 Популярные аниме</h1>
+        <h1 class="page-title">🔥Список аниме</h1>
         <div class="catalog" id="catalog">
             <!-- Карточки будут вставлены через JS -->
+            <div style="text-align: center; padding: 50px; color: #55557a;">
+                ⏳ Загрузка...
+            </div>
         </div>
     </main>
 
@@ -28,5 +220,84 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // ===== ДОПОЛНИТЕЛЬНЫЕ НАСТРОЙКИ ИНТЕРФЕЙСА =====
+
+        // Кнопка обновления
+        const updateBtn = document.getElementById('updateBtn');
+        const updateStatus = document.getElementById('updateStatus');
+        const statusDot = document.getElementById('statusDot');
+        const statusText = document.getElementById('statusText');
+
+        // Функция показа статуса
+        function showStatus(message, type = 'checking') {
+            updateStatus.classList.add('visible');
+            statusText.textContent = message;
+            statusDot.className = 'dot ' + type;
+            
+            // Автоматически скрываем через 3 секунды
+            clearTimeout(window.statusTimeout);
+            window.statusTimeout = setTimeout(() => {
+                updateStatus.classList.remove('visible');
+            }, 3000);
+        }
+
+        // Переопределяем manualUpdate для улучшенного UX
+        const originalManualUpdate = window.manualUpdate;
+        window.manualUpdate = async function() {
+            if (updateBtn.classList.contains('updating')) return;
+            
+            updateBtn.classList.add('updating');
+            updateBtn.innerHTML = '<span>⏳</span> Проверка...';
+            showStatus('Проверка обновлений...', 'checking');
+            
+            try {
+                await checkForUpdates();
+                if (updateBtn.innerHTML.includes('Проверка')) {
+                    updateBtn.innerHTML = '<span>✅</span> Актуально';
+                    showStatus('Всё актуально ✅', '');
+                    setTimeout(() => {
+                        updateBtn.innerHTML = '<span>🔄</span> Обновить';
+                        updateBtn.classList.remove('updating');
+                    }, 2000);
+                }
+            } catch (error) {
+                updateBtn.innerHTML = '<span>❌</span> Ошибка';
+                showStatus('Ошибка проверки', 'error');
+                setTimeout(() => {
+                    updateBtn.innerHTML = '<span>🔄</span> Обновить';
+                    updateBtn.classList.remove('updating');
+                }, 2000);
+            }
+        };
+
+        // Обработчик клика по кнопке
+        updateBtn.addEventListener('click', window.manualUpdate);
+
+        // Автоматическая проверка при загрузке
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                showStatus('Проверка обновлений...', 'checking');
+            }, 1000);
+        });
+
+        // Обновление статуса при проверке
+        window.addEventListener('updateCheckStart', () => {
+            showStatus('Проверка обновлений...', 'checking');
+        });
+
+        window.addEventListener('updateCheckEnd', (event) => {
+            if (event.detail && event.detail.updated) {
+                showStatus('Найдено обновление! 🔄', '');
+            } else {
+                showStatus('Всё актуально ✅', '');
+            }
+        });
+
+        console.log('⚡ AniVolume готов к работе!');
+        console.log('📱 Версия: ' + (localStorage.getItem('anivolume_version') || '1.0.0'));
+        console.log('🔄 Автообновление: активно (каждые 30 секунд)');
+        console.log('💡 Нажми кнопку "Обновить" для ручной проверки');
+    </script>
 </body>
-</html>
+    </html>
